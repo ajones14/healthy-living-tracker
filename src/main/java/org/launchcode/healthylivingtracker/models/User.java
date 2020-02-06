@@ -37,6 +37,11 @@ public class User {
         this.pwHash = encoder.encode(password);
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.pwHash = encoder.encode(password);
+    }
+
     public int getId() {
         return id;
     }

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
+
 @Controller
 public class AuthenticationController {
 
@@ -56,7 +57,6 @@ public class AuthenticationController {
                                           Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Register");
             return "register";
         }
 
@@ -74,10 +74,9 @@ public class AuthenticationController {
             return "register";
         }
 
-        User newUser = new User(registerFormDTO.getFirstName(), registerFormDTO.getLastName(), registerFormDTO.getUsername(), registerFormDTO.getPassword());
+        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
-
         return "redirect:/home";
     }
 
@@ -89,7 +88,8 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
-                                   Errors errors, HttpServletRequest request) {
+                                   Errors errors, HttpServletRequest request,
+                                   Model model) {
 
         if (errors.hasErrors()) {
             return "login";
@@ -108,9 +108,7 @@ public class AuthenticationController {
             errors.rejectValue("password", "password.invalid", "Invalid password");
             return "login";
         }
-
         setUserInSession(request.getSession(), theUser);
-
         return "redirect:/home";
     }
 
