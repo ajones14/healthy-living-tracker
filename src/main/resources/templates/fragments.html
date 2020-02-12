@@ -8,9 +8,26 @@
     <link rel="stylesheet" th:href="@{/styles/styles.css}">
 </head>
 <body>
-    <head th:fragment="header">
 
-    </head>
+<header th:fragment="header">
+    <div id="headerBanner">
+        <img id="headingPic" th:src="@{images/logo.png}">
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #54809E;">
+        <div class="container-fluid">
+            <ul id="TableOfContents" class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Meals</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Exercise</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Stats</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Preferences</a></li>
+            </ul>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item"><a class="nav-link" href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
 </body>
 </html>

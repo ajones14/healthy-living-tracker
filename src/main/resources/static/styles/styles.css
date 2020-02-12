@@ -6,6 +6,19 @@ body {
   color: red;
 }
 
+#headerBanner {
+    width: 100%;
+    text-align: center;
+    background-color: rgb(190, 252, 254, 0.5);
+}
+
+#headingPic {
+    margin: 3px;
+    height: 10%;
+    width: 10%;
+    border-radius: 10px;
+}
+
 .login {
     margin: 20px;
     text-align: center;
