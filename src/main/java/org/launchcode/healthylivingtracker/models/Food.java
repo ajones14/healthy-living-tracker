@@ -3,15 +3,13 @@ package org.launchcode.healthylivingtracker.models;
 import com.sun.istack.NotNull;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Food {
 
-    @Id
-    @GeneratedValue
-    private int id;
+    @ManyToOne
+    private Meal meal;
 
     @NotNull
     private String name;
@@ -21,13 +19,10 @@ public class Food {
 
     public Food () {}
 
-    public Food (String name, int caloricValue) {
+    public Food (String name, int caloricValue, Meal meal) {
         this.name = name;
         this.caloricValue = caloricValue;
-    }
-
-    public int getId() {
-        return id;
+        this.meal = meal;
     }
 
     public String getName() {
@@ -46,4 +41,11 @@ public class Food {
         this.caloricValue = caloricValue;
     }
 
+    public Meal getMeal() {
+        return meal;
+    }
+
+    public void setMeal(Meal meal) {
+        this.meal = meal;
+    }
 }
