@@ -3,10 +3,16 @@ package org.launchcode.healthylivingtracker.models;
 import com.sun.istack.NotNull;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Food {
+
+    @Id
+    @GeneratedValue
+    private int id;
 
     @ManyToOne
     private Meal meal;
@@ -47,5 +53,9 @@ public class Food {
 
     public void setMeal(Meal meal) {
         this.meal = meal;
+    }
+
+    public int getId() {
+        return id;
     }
 }

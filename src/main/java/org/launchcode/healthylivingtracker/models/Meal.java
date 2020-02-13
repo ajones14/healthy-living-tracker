@@ -1,6 +1,8 @@
 package org.launchcode.healthylivingtracker.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,11 +11,15 @@ import java.util.List;
 @Entity
 public class Meal {
 
+    @Id
+    @GeneratedValue
+    private int id;
+
     private int userId;
 
     private Date date;
 
-    @OneToMany(mappedBy = "food")
+    @OneToMany
     private final List<Food> foods = new ArrayList<>();
 
     private MealType type;
@@ -53,4 +59,9 @@ public class Meal {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
+    public int getId() {
+        return id;
+    }
+
 }
