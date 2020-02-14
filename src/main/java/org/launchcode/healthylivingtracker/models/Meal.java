@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -17,14 +17,14 @@ public class Meal {
 
     private int userId;
 
-    private Date date;
+    private LocalDate date;
 
     @OneToMany
     private final List<Food> foods = new ArrayList<>();
 
     private MealType type;
 
-    public Meal (int userId, Date date, MealType type) {
+    public Meal (int userId, LocalDate date, MealType type) {
         this.userId = userId;
         this.date = date;
         this.type = type;
@@ -44,11 +44,11 @@ public class Meal {
         return foods;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

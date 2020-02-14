@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
@@ -23,13 +23,18 @@ import static org.launchcode.healthylivingtracker.models.MealType.BREAKFAST;
 @RequestMapping("meals")
 public class MealsController {
 
-    private long millis=System.currentTimeMillis();
-    private Date currentDate = new java.sql.Date(millis);
 
-    private Collection<Meal> findAllByDate(Date date, Iterable<Meal> collection) {
+    private LocalDate currentDate = LocalDate.now();
+
+
+    private Collection<Meal> findAllByDate(LocalDate date, Iterable<Meal> collection) {
         Collection<Meal> result = new ArrayList<>();
         for (Meal meal : collection) {
-            if (meal.getDate().equals(date)) {
+            System.out.println("inside loop");
+            System.out.println(date.toString());
+            System.out.println(currentDate.toString());
+            if (meal.getDate().equals(currentDate)) {
+                System.out.println("add meal");
                 result.add(meal);
             }
         }
@@ -59,8 +64,12 @@ public class MealsController {
         User currentUser = (User) authenticationController.getUserFromSession(session);
         int currentUserId = currentUser.getId();
 
+        System.out.println(currentDate);
+
         Iterable<Meal> currentUserMeals = mealRepository.findAllByUserId(currentUserId);
+
         Collection<Meal> todaysMeals = findAllByDate(currentDate, currentUserMeals);
+        System.out.println(todaysMeals.toString());
 
 //        repeat lines 64 - 68 for lunch, dinner, and snacks
         Meal breakfast = null;
@@ -68,7 +77,10 @@ public class MealsController {
         if (Objects.isNull(findByType(BREAKFAST, todaysMeals))) {
             breakfast = new Meal(currentUserId, currentDate, BREAKFAST);
             mealRepository.save(breakfast);
+        } else {
+            breakfast = findByType(BREAKFAST, todaysMeals);
         }
+
         model.addAttribute("test2", breakfast.getDate().toString());
         model.addAttribute("test", currentUser.getFirstName());
         return "main/meals";
