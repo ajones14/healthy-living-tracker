@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MealRepository extends CrudRepository<Meal, Integer> {
 
+    Iterable<Meal> findAllByUserId(int userId);
+
 }
