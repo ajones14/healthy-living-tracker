@@ -17,24 +17,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
-import static org.launchcode.healthylivingtracker.models.MealType.BREAKFAST;
+import static org.launchcode.healthylivingtracker.models.MealType.*;
 
 @Controller
 @RequestMapping("meals")
 public class MealsController {
 
-
     private LocalDate currentDate = LocalDate.now();
-
 
     private Collection<Meal> findAllByDate(LocalDate date, Iterable<Meal> collection) {
         Collection<Meal> result = new ArrayList<>();
         for (Meal meal : collection) {
-            System.out.println("inside loop");
-            System.out.println(date.toString());
-            System.out.println(currentDate.toString());
             if (meal.getDate().equals(currentDate)) {
-                System.out.println("add meal");
                 result.add(meal);
             }
         }
@@ -64,24 +58,57 @@ public class MealsController {
         User currentUser = (User) authenticationController.getUserFromSession(session);
         int currentUserId = currentUser.getId();
 
-        System.out.println(currentDate);
-
         Iterable<Meal> currentUserMeals = mealRepository.findAllByUserId(currentUserId);
-
         Collection<Meal> todaysMeals = findAllByDate(currentDate, currentUserMeals);
-        System.out.println(todaysMeals.toString());
 
 //        repeat lines 64 - 68 for lunch, dinner, and snacks
         Meal breakfast = null;
+        Meal lunch = null;
+        Meal dinner = null;
+        Meal snack = null;
+
+        MealType[] enums = {BREAKFAST, LUNCH, DINNER, SNACK};
+        ArrayList<Meal> meals = new ArrayList<>();
+        meals.add(breakfast);
+        meals.add(lunch);
+        meals.add(dinner);
+        meals.add(snack);
+
+//        for (int i = 0; i < enums.length; i++) {
+//            if (Objects.isNull(findByType(enums[i], todaysMeals))) {
+//                meals.set(i, new Meal(currentUserId, currentDate, enums[i]));
+//                mealRepository.save(meals.get(i));
+//            } else {
+//                meals.set(i, findByType(enums[i], todaysMeals));
+//            }
+//        }
 
         if (Objects.isNull(findByType(BREAKFAST, todaysMeals))) {
             breakfast = new Meal(currentUserId, currentDate, BREAKFAST);
-            mealRepository.save(breakfast);
         } else {
             breakfast = findByType(BREAKFAST, todaysMeals);
         }
 
-        model.addAttribute("test2", breakfast.getDate().toString());
+        if (Objects.isNull(findByType(LUNCH, todaysMeals))) {
+            lunch = new Meal(currentUserId, currentDate, LUNCH);
+        } else {
+            lunch = findByType(LUNCH, todaysMeals);
+        }
+
+        if (Objects.isNull(findByType(DINNER, todaysMeals))) {
+            dinner = new Meal(currentUserId, currentDate, DINNER);
+        } else {
+            dinner = findByType(DINNER, todaysMeals);
+        }
+
+        if (Objects.isNull(findByType(SNACK, todaysMeals))) {
+            snack = new Meal(currentUserId, currentDate, SNACK);
+        } else {
+            snack = findByType(SNACK, todaysMeals);
+        }
+
+        model.addAttribute("test2", breakfast.getDate().toString() + lunch.getDate().toString() +
+                dinner.getDate().toString() + snack.getDate().toString());
         model.addAttribute("test", currentUser.getFirstName());
         return "main/meals";
     }
