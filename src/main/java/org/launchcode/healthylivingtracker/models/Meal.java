@@ -19,7 +19,7 @@ public class Meal {
 
     private LocalDate date;
 
-    @OneToMany
+    @OneToMany(mappedBy = "meal")
     private final List<Food> foods = new ArrayList<>();
 
     private MealType type;

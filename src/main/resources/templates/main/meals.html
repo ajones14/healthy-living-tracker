@@ -4,8 +4,70 @@
 <body>
 <header th:replace="fragments :: header"></header>
 
-<p>You've made it to the meals page!!</p>
-<p th:text="${test}"></p>
-<p th:text="${test2}"></p>
+<div class="container" style="border: thin solid grey;">
+    <div class="row">
+    <div class="col-xs-6">
+        <div class="mealHeading"><span class="mealLabel">Breakfast </span><div class="buttons"><button type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
+            <button type="button" class="btn btn-outline-danger btn-small"><span class="fa fa-minus"></span></button></div></div>
+        <table class="table">
+            <thead><tr>
+                <th scope="col">Food</th>
+                <th scope="col">Cal</th>
+            </tr></thead>
+            <tbody><tr th:each="food : ${breakfast}">
+                <td th:text="${food.name}"></td>
+                <td th:text="${food.caloricValue}"></td>
+            </tr></tbody>
+        </table>
+    </div>
+<!--    TODO fix doubled up borders-->
+    <div class="col-xs-6">
+        <div class="mealHeading"><span class="mealLabel">Lunch </span><div class="buttons"><button type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
+            <button type="button" class="btn btn-outline-danger btn-small"><span class="fa fa-minus"></span></button></div></div>
+        <table class="table">
+            <thead><tr>
+                <th scope="col">Food</th>
+                <th scope="col">Cal</th>
+            </tr></thead>
+            <tbody><tr th:each="food : ${lunch}">
+                <td th:text="${food.name}"></td>
+                <td th:text="${food.caloricValue}"></td>
+            </tr></tbody>
+        </table>
+    </div>
+    <div class="col-xs-6">
+        <div class="mealHeading"><span class="mealLabel">Dinner </span><div class="buttons"><button type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
+            <button type="button" class="btn btn-outline-danger btn-small"><span class="fa fa-minus"></span></button></div></div>
+        <table class="table">
+            <thead><tr>
+                <th scope="col">Food</th>
+                <th scope="col">Cal</th>
+            </tr></thead>
+            <tbody><tr th:each="food : ${dinner}">
+                <td th:text="${food.name}"></td>
+                <td th:text="${food.caloricValue}"></td>
+            </tr></tbody>
+        </table>
+    </div>
+
+    </div>
+    <div class="row">
+    <div class="col-xs-6" id="snacks">
+        <div class="mealHeading"><span class="mealLabel">Snacks </span><div class="buttons"><button type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
+            <button type="button" class="btn btn-outline-danger btn-small"><span class="fa fa-minus"></span></button></div></div>
+        <table class="table">
+            <thead><tr>
+                <th scope="col">Food</th>
+                <th scope="col">Cal</th>
+            </tr></thead>
+            <tbody><tr th:each="food : ${snack}">
+                <td th:text="${food.name}"></td>
+                <td th:text="${food.caloricValue}"></td>
+            </tr></tbody>
+        </table>
+</div>
+</div>
+</div>
+
 </body>
 </html>

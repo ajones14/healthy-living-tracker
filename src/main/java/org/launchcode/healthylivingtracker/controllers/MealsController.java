@@ -114,10 +114,13 @@ public class MealsController {
         } else {
             snack = findByType(SNACK, todaysMeals);
         }
+//        Food sample = new Food("sample food", 120, snack);
+//        foodRepository.save(sample);
 
-        model.addAttribute("test2", breakfast.getDate().toString() + lunch.getDate().toString() +
-                dinner.getDate().toString() + snack.getDate().toString());
-        model.addAttribute("test", currentUser.getFirstName());
+        model.addAttribute("breakfast", breakfast.getFoods());
+        model.addAttribute("lunch", lunch.getFoods());
+        model.addAttribute("dinner", dinner.getFoods());
+        model.addAttribute("snack", snack.getFoods());
         return "main/meals";
     }
 
