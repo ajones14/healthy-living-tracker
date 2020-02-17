@@ -6,8 +6,8 @@
 
 <div class="container" style="border: thin solid grey;">
     <div class="row">
-    <div class="col-xs-6">
-        <div class="mealHeading"><span class="mealLabel">Breakfast </span><div class="buttons"><button type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
+    <div class="col-xs-6" id="breakfast">
+        <div class="mealHeading"><span class="mealLabel">Breakfast </span><div class="buttons"><button id="addBreakfast" type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
             <button type="button" class="btn btn-outline-danger btn-small"><span class="fa fa-minus"></span></button></div></div>
         <table class="table">
             <thead><tr>
@@ -20,8 +20,28 @@
             </tr></tbody>
         </table>
     </div>
-    <div class="col-xs-6">
-        <div class="mealHeading"><span class="mealLabel">Lunch </span><div class="buttons"><button type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
+    <div class="col-xs-6" id="breakfast2" style="display:none; padding: 6px;">
+        <h5>Add Breakfast</h5>
+        <form>
+            <div class="form-group">
+                <label>Name:
+                    <input class="form-control">
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Calories:
+                    <input class="form-control">
+                </label>
+            </div>
+            <div class="form-group">
+                <input style="margin: 3px;" type="submit" value="Save" class="btn btn-success">
+                <input style="margin: 3px;" type="button" value="Cancel" class="btn btn-danger" id="breakfastCancel">
+            </div>
+        </form>
+
+    </div>
+    <div class="col-xs-6" id="lunch">
+        <div class="mealHeading"><span class="mealLabel">Lunch </span><div class="buttons"><button id="addLunch" type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
             <button type="button" class="btn btn-outline-danger btn-small"><span class="fa fa-minus"></span></button></div></div>
         <table class="table">
             <thead><tr>
@@ -34,8 +54,8 @@
             </tr></tbody>
         </table>
     </div>
-    <div class="col-xs-6">
-        <div class="mealHeading"><span class="mealLabel">Dinner </span><div class="buttons"><button type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
+    <div class="col-xs-6" id="dinner">
+        <div class="mealHeading"><span class="mealLabel">Dinner </span><div class="buttons"><button id="addDinner" type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
             <button type="button" class="btn btn-outline-danger btn-small"><span class="fa fa-minus"></span></button></div></div>
         <table class="table">
             <thead><tr>
@@ -51,8 +71,8 @@
 
     </div>
     <div class="row">
-    <div class="col-xs-6" id="snacks">
-        <div class="mealHeading"><span class="mealLabel">Snacks </span><div class="buttons"><button type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
+    <div class="col-xs-6" id="snack">
+        <div class="mealHeading"><span class="mealLabel">Snacks </span><div class="buttons"><button id="addSnack" type="button" class="btn btn-outline-success btn-small"><span class="fa fa-plus"></span></button>
             <button type="button" class="btn btn-outline-danger btn-small"><span class="fa fa-minus"></span></button></div></div>
         <table class="table">
             <thead><tr>
