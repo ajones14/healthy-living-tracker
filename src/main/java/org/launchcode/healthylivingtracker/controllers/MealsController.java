@@ -2,16 +2,21 @@ package org.launchcode.healthylivingtracker.controllers;
 
 import org.launchcode.healthylivingtracker.data.FoodRepository;
 import org.launchcode.healthylivingtracker.data.MealRepository;
+import org.launchcode.healthylivingtracker.models.Food;
 import org.launchcode.healthylivingtracker.models.Meal;
 import org.launchcode.healthylivingtracker.models.MealType;
 import org.launchcode.healthylivingtracker.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -117,10 +122,18 @@ public class MealsController {
 //        Food sample = new Food("sample food", 120, snack);
 //        foodRepository.save(sample);
 
+        model.addAttribute(new Food());
+        model.addAttribute("bf", breakfast);
         model.addAttribute("breakfast", breakfast.getFoods());
         model.addAttribute("lunch", lunch.getFoods());
         model.addAttribute("dinner", dinner.getFoods());
         model.addAttribute("snack", snack.getFoods());
+        return "main/meals";
+    }
+
+    @PostMapping
+    public String processMeals(@ModelAttribute @Valid Food newFood, Errors errors, Model model) {
+        foodRepository.save(newFood);
         return "main/meals";
     }
 

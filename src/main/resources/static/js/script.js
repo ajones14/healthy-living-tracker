@@ -7,6 +7,8 @@ function init () {
 
     let breakfastCancel = document.getElementById("breakfastCancel");
 
+    let breakfastSave = document.getElementById("breakfastSave");
+
     let breakfast = document.getElementById("breakfast");
     let lunch = document.getElementById("lunch");
     let dinner = document.getElementById("dinner");
@@ -19,7 +21,7 @@ function init () {
         breakfast2.style.display = "inline-block";
     });
 
-    cancelButton.addEventListener("click", function () {
+    breakfastCancel.addEventListener("click", function () {
         breakfast.style.display = "inline-block";
         breakfast2.style.display = "none";
     });
